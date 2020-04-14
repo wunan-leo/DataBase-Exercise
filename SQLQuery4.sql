@@ -1,3 +1,5 @@
+CREATE DATABASE university
+
 CREATE TABLE student
 (
  snum CHAR(4) NOT NULL PRIMARY KEY

@@ -3,7 +3,8 @@ FROM student,sc
 WHERE student.snum=sc.snum AND sc.score<=60 
 
 SELECT distinct sname,
-(Year(current_timestamp)-Year(birthday))-(case when Month(current_timestamp)>Month(birthday) then 0 else 1 end ) as age
+(Year(Getdate())-Year(birthday))-(case when Month(Getdate())>Month(birthday) 
+OR(Month(Getdate())=Month(birthday) AND Day(Getdate())>Day(birthday)) then 0 else 1 end )as age
 FROM student,course,sections,sc
 WHERE course.dept='计算机系' AND
       course.cnum=sections.cnum AND
@@ -116,7 +117,8 @@ WHERE dept='计算机'
 INTERSECT
 SELECT *
 FROM student
-WHERE (Year(current_timestamp)-Year(birthday))-(case when Month(current_timestamp)>Month(birthday) then 0 else 1 end )<=19
+WHERE (Year(Getdate())-Year(birthday))-(case when Month(Getdate())>Month(birthday) 
+OR(Month(Getdate())=Month(birthday) AND Day(Getdate())>Day(birthday)) then 0 else 1 end )<=19
 
 SELECT *
 FROM student
@@ -124,4 +126,5 @@ WHERE dept='计算机'
 INTERSECT
 SELECT *
 FROM student
-WHERE (Year(current_timestamp)-Year(birthday))-(case when Month(current_timestamp)>Month(birthday) then 0 else 1 end )>19
+WHERE (Year(Getdate())-Year(birthday))-(case when Month(Getdate())>Month(birthday) 
+OR(Month(Getdate())=Month(birthday) AND Day(Getdate())>Day(birthday)) then 0 else 1 end )>19
